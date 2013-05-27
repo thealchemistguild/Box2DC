@@ -1,4 +1,7 @@
-* Box2D C API for portability to other languages.
+Box2DC
+======
+
+Box2D C API for portability to other languages.
 
 The majority of the API has been wrapped except for some of the lesser used classes, math functions and some C++ structs. If there is any interest in this project or I start using these other features myself I'll get to translating them eventually.
 
@@ -8,7 +11,7 @@ If you are using Box2DC to port to another language you'll want to look at the h
     - WorldCallbackCenter.h
     - Box2DC.h
 
-* Files remaining to translate (since Box2D 2.3.0):
+Files remaining to translate (since Box2D 2.3.0):
 
 /Common
 	- b2BlockAllocator.cpp
