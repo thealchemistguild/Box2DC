@@ -6,10 +6,11 @@
 //  Copyright (c) 2013 Ryan Joseph. All rights reserved.
 //
 
-#import "Box2D.h"
-#import "Box2DC.h"
-#import "WorldCallbackCenter.h"
-#import "DebugDraw.h"
+#include "Box2DC.h"
+#include "Box2D.h"
+#include "WorldCallbackCenter.h"
+#include "DebugDraw.h"
+#include "StructConverters.h"
 
 #include <memory.h>
 #include <string.h>
@@ -27,18 +28,6 @@ void Box2DWorldManifoldInitialize(Box2DWorldManifold &worldManifold, Box2DManifo
 }
 
 #pragma mark Vector2
-
-void Box2DVerticesArrayMake (Box2DVerticesArray &out, const b2Vec2* vertices, int32 vertexCount) {
-    for (int i=0; i<vertexCount; i++) {
-        out[i] = Box2DVector2Make(vertices[i]);
-    }
-}
-
-void b2Vec2ArrayMake (b2Vec2* out, const Box2DVector2* vertices, int32 vertexCount) {
-    for (int i=0; i<vertexCount; i++) {
-        out[i] = Box2DVector2Make(vertices[i]);
-    }
-}
 
 void Box2DVectorSetZero(Box2DVector2 &vec) {
     vec.x = 0.0f;
@@ -1591,63 +1580,6 @@ Box2DWorld Box2DBodyGetWorld(Box2DBody body) {
 void Box2DBodyDump(Box2DBody body) {
     body->Dump();
 }
-
-#pragma mark World Callbacks
-
-Box2DWorldCallbackCenter Box2DWorldCallbackCenterCreate (Box2DWorldCallbacks callbacks) {
-    return new b2WorldCallbackCenter(callbacks);
-}
-
-#pragma mark Debug Draw
-
-Box2DDebugDraw Box2DDebugDrawCreate (Box2DDebugDrawCallbacks callbacks) {
-    return new b2DebugDraw(callbacks);
-}
-
-void Box2DDebugDrawSetFlags(Box2DDebugDraw debugDraw, uint32 flags) {
-    debugDraw->SetFlags(flags);
-}
-
-uint32 Box2DDebugDrawGetFlags(Box2DDebugDraw debugDraw) {
-    return debugDraw->GetFlags();
-}
-
-void Box2DDebugDrawAppendFlags(Box2DDebugDraw debugDraw, uint32 flags) {
-    debugDraw->AppendFlags(flags);
-}
-
-void Box2DDebugDrawClearFlags(Box2DDebugDraw debugDraw, uint32 flags) {
-    debugDraw->ClearFlags(flags);
-}
-
-void Box2DDebugDrawPolygon(Box2DDebugDraw debugDraw, Box2DVector2* vertices, int32 vertexCount, Box2DColor color) {
-    b2Vec2 _vertices[b2_maxPolygonVertices];
-    b2Vec2ArrayMake((b2Vec2*)&_vertices, vertices, vertexCount);
-    debugDraw->DrawPolygon(_vertices, vertexCount, Box2DColorMake(color));
-}
-
-void Box2DDebugDrawSolidPolygon(Box2DDebugDraw debugDraw, Box2DVector2* vertices, int32 vertexCount, Box2DColor color) {
-    b2Vec2 _vertices[b2_maxPolygonVertices];
-    b2Vec2ArrayMake((b2Vec2*)&_vertices, vertices, vertexCount);
-    debugDraw->DrawPolygon(_vertices, vertexCount, Box2DColorMake(color));
-}
-
-void Box2DDebugDrawCircle(Box2DDebugDraw debugDraw, Box2DVector2 center, float32 radius, Box2DColor color) {
-    debugDraw->DrawCircle(Box2DVector2Make(center), radius, Box2DColorMake(color));
-}
-
-void Box2DDebugDrawSolidCircle(Box2DDebugDraw debugDraw, Box2DVector2 center, float32 radius, Box2DVector2 axis, Box2DColor color) {
-    debugDraw->DrawSolidCircle(Box2DVector2Make(center), radius, Box2DVector2Make(axis), Box2DColorMake(color));
-}
-
-void Box2DDebugDrawSegment(Box2DDebugDraw debugDraw, Box2DVector2 p1, Box2DVector2 p2, Box2DColor color) {
-    debugDraw->DrawSegment(Box2DVector2Make(p1), Box2DVector2Make(p2), Box2DColorMake(color));
-}
-
-void Box2DDebugDrawTransform(Box2DDebugDraw debugDraw, Box2DTransform xf) {
-    debugDraw->DrawTransform(Box2DTransformMake(xf));
-}
-
 
 #pragma mark World
 

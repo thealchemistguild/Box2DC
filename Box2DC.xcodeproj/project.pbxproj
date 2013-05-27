@@ -57,6 +57,7 @@
 		53B1A8001745BAC500F20C0D /* Box2DC.c in Sources */ = {isa = PBXBuildFile; fileRef = 53B8BCD317430C76000F1755 /* Box2DC.c */; };
 		53D3C60C174EEF220065B7B3 /* StructConverters.c in Sources */ = {isa = PBXBuildFile; fileRef = 53D3C60B174EEF220065B7B3 /* StructConverters.c */; };
 		53D3C610174FA7820065B7B3 /* DebugDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53D3C60E174FA7820065B7B3 /* DebugDraw.cpp */; };
+		53F2D6171752BCB20025FCBD /* StructConverters.h in Headers */ = {isa = PBXBuildFile; fileRef = 53F2D6161752BCB10025FCBD /* StructConverters.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,12 +158,14 @@
 		53489B8A174BDFF100F13B9B /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
 		53489BFA174EB3CB00F13B9B /* WorldCallbackCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorldCallbackCenter.cpp; sourceTree = "<group>"; };
 		53489BFB174EB3CB00F13B9B /* WorldCallbackCenter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = WorldCallbackCenter.h; sourceTree = "<group>"; };
-		53489BFE174EB42300F13B9B /* Box2DC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2DC.h; sourceTree = "<group>"; };
+		53489BFE174EB42300F13B9B /* Box2DC.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Box2DC.h; sourceTree = "<group>"; };
 		53B1A7FB1745BA4700F20C0D /* libBox2DC.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libBox2DC.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B8BCD317430C76000F1755 /* Box2DC.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = Box2DC.c; sourceTree = "<group>"; };
 		53D3C60B174EEF220065B7B3 /* StructConverters.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = StructConverters.c; sourceTree = SOURCE_ROOT; };
 		53D3C60E174FA7820065B7B3 /* DebugDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DebugDraw.cpp; sourceTree = "<group>"; };
 		53D3C60F174FA7820065B7B3 /* DebugDraw.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = DebugDraw.h; sourceTree = "<group>"; };
+		53F2D6161752BCB10025FCBD /* StructConverters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StructConverters.h; sourceTree = "<group>"; };
+		53F2D61D1753994B0025FCBD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,8 +345,10 @@
 				53489BFA174EB3CB00F13B9B /* WorldCallbackCenter.cpp */,
 				53489BFB174EB3CB00F13B9B /* WorldCallbackCenter.h */,
 				53D3C60B174EEF220065B7B3 /* StructConverters.c */,
-				53489BFE174EB42300F13B9B /* Box2DC.h */,
+				53F2D6161752BCB10025FCBD /* StructConverters.h */,
 				53B8BCD317430C76000F1755 /* Box2DC.c */,
+				53489BFE174EB42300F13B9B /* Box2DC.h */,
+				53F2D61D1753994B0025FCBD /* README.md */,
 				53489B24174BDFF100F13B9B /* Box2D */,
 				53B8BB3F17430AA0000F1755 /* Products */,
 			);
@@ -364,6 +369,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53F2D6171752BCB20025FCBD /* StructConverters.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

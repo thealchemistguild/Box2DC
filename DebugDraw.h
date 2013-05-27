@@ -6,8 +6,11 @@
 //  Copyright (c) 2013 Ryan Joseph. All rights reserved.
 //
 
-#import "Box2D.h"
-#import "Box2DC.h"
+#ifndef BOX2DC_DEBUG_DRAW_H
+#define BOX2DC_DEBUG_DRAW_H
+
+#include "Box2D.h"
+#include "Box2DC.h"
 
 struct Box2DColor {
 	float32 r, g, b;
@@ -44,8 +47,20 @@ private:
     Box2DDebugDrawCallbacks m_callbacks;
 };
 
-typedef b2DebugDraw* Box2DDebugDraw;
-
 b2Color Box2DColorMake (Box2DColor in);
 Box2DColor Box2DColorMake (b2Color in);
 Box2DColor Box2DColorMake (float32 r, float32 g, float32 b);
+
+Box2DDebugDraw Box2DDebugDrawCreate (Box2DDebugDrawCallbacks callbacks);
+void Box2DDebugDrawSetFlags(Box2DDebugDraw debugDraw, uint32 flags);
+uint32 Box2DDebugDrawGetFlags(Box2DDebugDraw debugDraw);
+void Box2DDebugDrawAppendFlags(Box2DDebugDraw debugDraw, uint32 flags);
+void Box2DDebugDrawClearFlags(Box2DDebugDraw debugDraw, uint32 flags);
+void Box2DDebugDrawPolygon(Box2DDebugDraw debugDraw, Box2DVector2* vertices, int32 vertexCount, Box2DColor color);
+void Box2DDebugDrawSolidPolygon(Box2DDebugDraw debugDraw, Box2DVector2* vertices, int32 vertexCount, Box2DColor color);
+void Box2DDebugDrawCircle(Box2DDebugDraw debugDraw, Box2DVector2 center, float32 radius, Box2DColor color);
+void Box2DDebugDrawSolidCircle(Box2DDebugDraw debugDraw, Box2DVector2 center, float32 radius, Box2DVector2 axis, Box2DColor color);
+void Box2DDebugDrawSegment(Box2DDebugDraw debugDraw, Box2DVector2 p1, Box2DVector2 p2, Box2DColor color);
+void Box2DDebugDrawTransform(Box2DDebugDraw debugDraw, Box2DTransform xf);
+
+#endif

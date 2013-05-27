@@ -6,13 +6,8 @@
 //  Copyright (c) 2013 Ryan Joseph. All rights reserved.
 //
 
-#import "Box2D.h"
-#import "Box2DC.h"
-
-void CopyJointDef (void* in, Box2DJointDefinition def) {
-    b2JointDef jd = _Box2DJointDefinitionMake(def);
-    memcpy(in, &jd, sizeof(b2JointDef));
-}
+#include "Box2D.h"
+#include "Box2DC.h"
 
 Box2DVector2 Box2DVector2Make (b2Vec2 in) {
     Box2DVector2 out;
@@ -288,6 +283,11 @@ b2JointDef _Box2DJointDefinitionMake (Box2DJointDefinition in) {
     return out;
 }
 
+void Box2DJointDefinitionCopyStruct (void* in, Box2DJointDefinition def) {
+    b2JointDef jd = _Box2DJointDefinitionMake(def);
+    memcpy(in, &jd, sizeof(b2JointDef));
+}
+
 Box2DDistanceJointDefinition Box2DJointDefinitionMake (b2DistanceJointDef in) {
     Box2DDistanceJointDefinition out;
     out.joint = _Box2DJointDefinitionMake(in);
@@ -301,7 +301,7 @@ Box2DDistanceJointDefinition Box2DJointDefinitionMake (b2DistanceJointDef in) {
 
 b2DistanceJointDef Box2DJointDefinitionMake (Box2DDistanceJointDefinition in) {
     b2DistanceJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.localAnchorA = Box2DVector2Make(in.localAnchorA);
     out.localAnchorB = Box2DVector2Make(in.localAnchorB);
     out.length = in.length;
@@ -322,7 +322,7 @@ Box2DFrictionJointDefinition Box2DJointDefinitionMake (b2FrictionJointDef in) {
 
 b2FrictionJointDef Box2DJointDefinitionMake (Box2DFrictionJointDefinition in) {
     b2FrictionJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.localAnchorA = Box2DVector2Make(in.localAnchorA);
     out.localAnchorB = Box2DVector2Make(in.localAnchorB);
     out.maxForce = in.maxForce;
@@ -341,7 +341,7 @@ Box2DGearJointDefinition Box2DJointDefinitionMake (b2GearJointDef in) {
 
 b2GearJointDef Box2DJointDefinitionMake (Box2DGearJointDefinition in) {
     b2GearJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.joint1 = in.joint1;
     out.joint2 = in.joint2;
     out.ratio = in.ratio;
@@ -361,7 +361,7 @@ Box2DMotorJointDefinition Box2DJointDefinitionMake (b2MotorJointDef in) {
 
 b2MotorJointDef Box2DJointDefinitionMake (Box2DMotorJointDefinition in) {
     b2MotorJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.linearOffset = Box2DVector2Make(in.linearOffset);
     out.angularOffset = in.angularOffset;
     out.maxForce = in.maxForce;
@@ -388,7 +388,7 @@ Box2DPrismaticJointDefinition Box2DJointDefinitionMake (b2PrismaticJointDef in) 
 
 b2PrismaticJointDef Box2DJointDefinitionMake (Box2DPrismaticJointDefinition in) {
     b2PrismaticJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.localAnchorA = Box2DVector2Make(in.localAnchorA);
     out.localAnchorB = Box2DVector2Make(in.localAnchorB);
     out.localAxisA = Box2DVector2Make(in.localAxisA);
@@ -417,7 +417,7 @@ Box2DPulleyJointDefinition Box2DJointDefinitionMake (b2PulleyJointDef in) {
 
 b2PulleyJointDef Box2DJointDefinitionMake (Box2DPulleyJointDefinition in) {
     b2PulleyJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.groundAnchorA = Box2DVector2Make(in.groundAnchorA);
     out.groundAnchorB = Box2DVector2Make(in.groundAnchorB);
     out.localAnchorA = Box2DVector2Make(in.localAnchorA);
@@ -445,7 +445,7 @@ Box2DRevoluteJointDefinition Box2DJointDefinitionMake (b2RevoluteJointDef in) {
 
 b2RevoluteJointDef Box2DJointDefinitionMake (Box2DRevoluteJointDefinition in) {
     b2RevoluteJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.localAnchorA = Box2DVector2Make(in.localAnchorA);
     out.localAnchorB = Box2DVector2Make(in.localAnchorB);
     out.referenceAngle = in.referenceAngle;
@@ -469,7 +469,7 @@ Box2DRopeJointDefinition Box2DJointDefinitionMake (b2RopeJointDef in) {
 
 b2RopeJointDef Box2DJointDefinitionMake (Box2DRopeJointDefinition in) {
     b2RopeJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.localAnchorA = Box2DVector2Make(in.localAnchorA);
     out.localAnchorB = Box2DVector2Make(in.localAnchorB);
     out.maxLength = in.maxLength;
@@ -489,7 +489,7 @@ Box2DWeldJointDefinition Box2DJointDefinitionMake (b2WeldJointDef in) {
 
 b2WeldJointDef Box2DJointDefinitionMake (Box2DWeldJointDefinition in) {
     b2WeldJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.localAnchorA = Box2DVector2Make(in.localAnchorA);
     out.localAnchorB = Box2DVector2Make(in.localAnchorB);
     out.referenceAngle = in.referenceAngle;
@@ -514,7 +514,7 @@ Box2DWheelJointDefinition Box2DJointDefinitionMake (b2WheelJointDef in) {
 
 b2WheelJointDef Box2DJointDefinitionMake (Box2DWheelJointDefinition in) {
     b2WheelJointDef out;
-    CopyJointDef(&out, in.joint);
+    Box2DJointDefinitionCopyStruct(&out, in.joint);
     out.localAnchorA = Box2DVector2Make(in.localAnchorA);
     out.localAnchorB = Box2DVector2Make(in.localAnchorB);
     out.localAxisA = Box2DVector2Make(in.localAxisA);
@@ -524,4 +524,16 @@ b2WheelJointDef Box2DJointDefinitionMake (Box2DWheelJointDefinition in) {
     out.frequencyHz = in.frequencyHz;
     out.dampingRatio = in.dampingRatio;
     return out;
+}
+
+void Box2DVerticesArrayMake (Box2DVerticesArray &out, const b2Vec2* vertices, int32 vertexCount) {
+    for (int i=0; i<vertexCount; i++) {
+        out[i] = Box2DVector2Make(vertices[i]);
+    }
+}
+
+void b2Vec2ArrayMake (b2Vec2* out, const Box2DVector2* vertices, int32 vertexCount) {
+    for (int i=0; i<vertexCount; i++) {
+        out[i] = Box2DVector2Make(vertices[i]);
+    }
 }

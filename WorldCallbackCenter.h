@@ -6,8 +6,11 @@
 //  Copyright (c) 2013 Ryan Joseph. All rights reserved.
 //
 
-#import "Box2D.h"
-#import "Box2DC.h"
+#ifndef BOX2DC_WORLD_CALLBACK_CENTER_H
+#define BOX2DC_WORLD_CALLBACK_CENTER_H
+
+#include "Box2DC.h"
+#include "Box2D.h"
 
 // b2DestructionListener
 typedef void (*Box2DWorldCallbackSayGoodbyeJoint)(Box2DJoint joint, void* userData);
@@ -71,4 +74,6 @@ private:
     Box2DWorldCallbacks m_callbacks;
 };
 
-typedef b2WorldCallbackCenter* Box2DWorldCallbackCenter;
+Box2DWorldCallbackCenter Box2DWorldCallbackCenterCreate (Box2DWorldCallbacks callbacks);
+
+#endif

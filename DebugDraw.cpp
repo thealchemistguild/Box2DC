@@ -7,7 +7,8 @@
 //
 
 #include "DebugDraw.h"
-#import "Box2DC.h"
+#include "Box2DC.h"
+#include "StructConverters.h"
 
 b2DebugDraw::b2DebugDraw(Box2DDebugDrawCallbacks callbacks) {
     m_callbacks = callbacks;
@@ -55,4 +56,52 @@ void b2DebugDraw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color&
 
 void b2DebugDraw::DrawTransform(const b2Transform& xf) {
     if (m_callbacks.drawTransform) m_callbacks.drawTransform(Box2DTransformMake(xf), m_callbacks.userData);
+}
+
+Box2DDebugDraw Box2DDebugDrawCreate (Box2DDebugDrawCallbacks callbacks) {
+    return new b2DebugDraw(callbacks);
+}
+
+void Box2DDebugDrawSetFlags(b2DebugDraw* debugDraw, uint32 flags) {
+    debugDraw->SetFlags(flags);
+}
+
+uint32 Box2DDebugDrawGetFlags(b2DebugDraw* debugDraw) {
+    return debugDraw->GetFlags();
+}
+
+void Box2DDebugDrawAppendFlags(b2DebugDraw* debugDraw, uint32 flags) {
+    debugDraw->AppendFlags(flags);
+}
+
+void Box2DDebugDrawClearFlags(b2DebugDraw* debugDraw, uint32 flags) {
+    debugDraw->ClearFlags(flags);
+}
+
+void Box2DDebugDrawPolygon(b2DebugDraw* debugDraw, Box2DVector2* vertices, int32 vertexCount, Box2DColor color) {
+    b2Vec2 _vertices[b2_maxPolygonVertices];
+    b2Vec2ArrayMake((b2Vec2*)&_vertices, vertices, vertexCount);
+    debugDraw->DrawPolygon(_vertices, vertexCount, Box2DColorMake(color));
+}
+
+void Box2DDebugDrawSolidPolygon(b2DebugDraw* debugDraw, Box2DVector2* vertices, int32 vertexCount, Box2DColor color) {
+    b2Vec2 _vertices[b2_maxPolygonVertices];
+    b2Vec2ArrayMake((b2Vec2*)&_vertices, vertices, vertexCount);
+    debugDraw->DrawPolygon(_vertices, vertexCount, Box2DColorMake(color));
+}
+
+void Box2DDebugDrawCircle(b2DebugDraw* debugDraw, Box2DVector2 center, float32 radius, Box2DColor color) {
+    debugDraw->DrawCircle(Box2DVector2Make(center), radius, Box2DColorMake(color));
+}
+
+void Box2DDebugDrawSolidCircle(b2DebugDraw* debugDraw, Box2DVector2 center, float32 radius, Box2DVector2 axis, Box2DColor color) {
+    debugDraw->DrawSolidCircle(Box2DVector2Make(center), radius, Box2DVector2Make(axis), Box2DColorMake(color));
+}
+
+void Box2DDebugDrawSegment(b2DebugDraw* debugDraw, Box2DVector2 p1, Box2DVector2 p2, Box2DColor color) {
+    debugDraw->DrawSegment(Box2DVector2Make(p1), Box2DVector2Make(p2), Box2DColorMake(color));
+}
+
+void Box2DDebugDrawTransform(b2DebugDraw* debugDraw, Box2DTransform xf) {
+    debugDraw->DrawTransform(Box2DTransformMake(xf));
 }

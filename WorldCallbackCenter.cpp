@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Ryan Joseph. All rights reserved.
 //
 
-#import "Box2D.h"
-#import "WorldCallbackCenter.h"
+#include "Box2DC.h"
+#include "WorldCallbackCenter.h"
+#include "StructConverters.h"
+#include "Box2D.h"
 
 b2WorldCallbackCenter::b2WorldCallbackCenter(Box2DWorldCallbacks callbacks) {
     m_callbacks = callbacks;
@@ -66,4 +68,8 @@ float32 b2WorldCallbackCenter::ReportFixture(b2Fixture* fixture, const b2Vec2& p
     } else {
         return false;
     }
+}
+
+Box2DWorldCallbackCenter Box2DWorldCallbackCenterCreate (Box2DWorldCallbacks callbacks) {
+    return new b2WorldCallbackCenter(callbacks);
 }
