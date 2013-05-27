@@ -13,7 +13,7 @@ If you are using Box2DC to port to another language you'll want to look at the h
 
 Files remaining to translate (since Box2D 2.3.0):
 
-/Common
+Common
     b2BlockAllocator.cpp
     b2Math.cpp (partially)
     b2Timer.cpp
@@ -21,7 +21,7 @@ Files remaining to translate (since Box2D 2.3.0):
     b2Settings.cpp
     b2StackAllocator.cpp
 
-/Collision
+Collision
     b2BroadPhase.cpp
     b2CollideCircle.cpp
     b2CollideEdge.cpp
@@ -31,11 +31,11 @@ Files remaining to translate (since Box2D 2.3.0):
     b2DynamicTree.cpp
     b2TimeOfImpact.cpp
 
-/Dynamics
+Dynamics
     b2Island.cpp
     b2TimeStep.h
 
-/Dynamics/Contacts
+Dynamics/Contacts
     b2ChainAndCircleContact.cpp
     b2EdgeAndCircleContact.cpp
     b2ChainAndPolygonContact.cpp
@@ -46,7 +46,7 @@ Files remaining to translate (since Box2D 2.3.0):
     b2PolygonContact.cpp
     b2ContactSolver.cpp
 
-/Rope
+Rope
     b2Rope.cpp
 
 PLEASE NOTE: I am not a C programmer and there may be errors/oddities to be fixed in the general syntax. Please let me know if anything needs to be changed or contribute to the project.
